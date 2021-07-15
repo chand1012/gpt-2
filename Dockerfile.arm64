@@ -1,4 +1,4 @@
-FROM chand1012/tensorflow:1.15.5-py3
+FROM chand1012/tensorflow:2.5.0-py3
 
 RUN mkdir /gpt-2
 WORKDIR /gpt-2
