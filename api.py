@@ -1,4 +1,5 @@
 from typing import Optional
+import time
 
 from fastapi import FastAPI
 
@@ -24,9 +25,13 @@ def samples_get(
     temperature: Optional[float] = 1.0
 ):
 
+    start = time.time() * 1000
     output = generate.samples(prompt, model_name, seed, nsamples, batch_size, length, temperature, top_k)
+    end = time.time() * 1000
 
-    return {'prompt':prompt, 'responses':output}
+    diff = end - start
+
+    return {'prompt': prompt, 'responses': output, 'time': diff}
 
 # @app.post('/samples', response_class=ResponseModel)
 # def samples_post(data: RequestModel):
