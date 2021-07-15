@@ -1,0 +1,11 @@
+FROM tensorflow/tensorflow:2.5.0
+
+ENV LANG=C.UTF-8
+RUN mkdir /gpt-2
+WORKDIR /gpt-2
+ADD . /gpt-2
+RUN pip3 install -r requirements-api.txt
+RUN python3 download_model.py 124M
+RUN python3 download_model.py 355M
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"]
+EXPOSE 5000

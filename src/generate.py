@@ -3,8 +3,12 @@ import os
 import numpy as np
 import tensorflow as tf
 
-import model, sample, encoder
-
+try:
+    import model, encoder, sample
+except ModuleNotFoundError:
+    import src.model as model
+    import src.encoder as encoder
+    import src.sample as sample
 
 def samples(
     prompt,

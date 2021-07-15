@@ -1,6 +1,9 @@
 import tensorflow as tf
 
-import model
+try:
+    import model
+except ModuleNotFoundError:
+    import src.model as model
 
 def top_k_logits(logits, k):
     if k == 0:
